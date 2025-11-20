@@ -1,0 +1,47 @@
+<svg width="300" height="350" viewBox="0 0 300 350" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradient Border -->
+    <linearGradient id="shieldBorder" x1="0" y1="0" x2="300" y2="350">
+      <stop offset="0%" stop-color="#4facfe"/>
+      <stop offset="50%" stop-color="#00eaff"/>
+      <stop offset="100%" stop-color="#00f2fe"/>
+    </linearGradient>
+
+    <!-- Outer Glow -->
+    <filter id="outerGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="18" result="glow1"/>
+      <feGaussianBlur stdDeviation="28" result="glow2"/>
+      <feMerge>
+        <feMergeNode in="glow1"/>
+        <feMergeNode in="glow2"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Inner Glow -->
+    <filter id="innerGlow">
+      <feGaussianBlur stdDeviation="4" result="innerBlur"/>
+      <feComposite in="innerBlur" in2="SourceGraphic" operator="arithmetic" k2="-1" k3="1"/>
+      <feBlend in="SourceGraphic" in2="innerBlur" mode="lighten"/>
+    </filter>
+  </defs>
+
+  <!-- Shield Shape -->
+  <path
+    d="M150 10 L260 70 L260 180 C260 240 210 300 150 330 C90 300 40 240 40 180 L40 70 Z"
+    stroke="url(#shieldBorder)"
+    stroke-width="16"
+    fill="#000000"
+    filter="url(#outerGlow)"
+  />
+
+  <!-- Inner Neon Edge -->
+  <path
+    d="M150 25 L245 78 L245 175 C245 230 200 285 150 308 C100 285 55 230 55 175 L55 78 Z"
+    stroke="#00eaff"
+    stroke-width="4"
+    fill="none"
+    opacity="0.8"
+    filter="url(#innerGlow)"
+  />
+</svg>
